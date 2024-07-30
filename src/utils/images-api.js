@@ -1,8 +1,11 @@
 import axios from "axios";
 
-axios.defaults.baseURL = "https://api.unsplash.com/photos/?client_id=RjIsPZVdJdHA7EIX1kcSuYMG_YljaeuXcwVRHctfYpI";
+
 
  const fetchArticlesWithTopic = async topic => {
-  const response = await axios.get(`/search?query=${topic}`);
-  return response.data.hits;
+  const response = await axios.get(`https://api.unsplash.com/search/photos/?client_id=RjIsPZVdJdHA7EIX1kcSuYMG_YljaeuXcwVRHctfYpI&query=${topic}`);
+  // const response = await axios.get(`https://api.unsplash.com/search/photos/?client_id=RjIsPZVdJdHA7EIX1kcSuYMG_YljaeuXcwVRHctfYpI&query=${topic}`);
+  return response.data;
 };
+
+export default fetchArticlesWithTopic;
