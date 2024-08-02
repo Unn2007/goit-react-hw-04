@@ -1,17 +1,38 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import SearchBar from './components/SearchBar/SearchBar'
 import './App.css'
 import fetchArticlesWithTopic from './utils/images-api'
 
 function App() {
-  const [count, setCount] = useState(0)
-  console.log(fetchArticlesWithTopic("cat"))
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
+	const handleSearch = async (topic) => {
+    try {
+	  setArticles([]);
+	  setError(false);
+      setLoading(true);
+      const data = await fetchArticlesWithTopic(topic);
+      setArticles(data);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+
+
+  
+
+ 
   return (
     <>
       
-       <div></div>
+       <SearchBar onSearch={onFind} />
     </>
   )
 }
