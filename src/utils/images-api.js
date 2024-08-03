@@ -10,7 +10,7 @@ const accessKey = 'RjIsPZVdJdHA7EIX1kcSuYMG_YljaeuXcwVRHctfYpI&query';
 //     headers: {
 //         Authorization: `Client-ID ${accessKey}`
 //     }
-// })
+// })c   
 // .then(response => {
 //     console.log(response.data);
 // })
