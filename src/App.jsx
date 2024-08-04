@@ -3,6 +3,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import "./App.css";
 import fetchArticlesWithTopic from "./utils/images-api";
 import { InfinitySpin } from "react-loader-spinner";
+import ImageGallery from "./components/ImageGallery/ImageGallery";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -15,8 +16,9 @@ function App() {
       setError(false);
       setLoading(true);
       const data = await fetchArticlesWithTopic(topic);
-      console.dir(data.results[0])
-      setImages(data);
+      
+      setImages(data.results);
+     
     } catch (error) {
       setError(true);
       console.log(error)
@@ -24,7 +26,7 @@ function App() {
       setLoading(false);
     }
   };
-
+console.log(images.length)
   return (
     <>
       <SearchBar onSearch={handleSearch} />
@@ -34,6 +36,8 @@ function App() {
         color="#4fa94d"
         ariaLabel="infinity-spin-loading"
       />}
+      {images.length>0 && <ImageGallery data={images}/>}
+      
     </>
   );
 }
