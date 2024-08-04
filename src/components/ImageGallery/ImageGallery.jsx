@@ -1,11 +1,12 @@
 import css from './ImageGallery.module.css'
 import ImageCard from "../ImageCard/ImageCard";
 
+
 function ImageGallery({data}) {
-	console.log(data)
+	
 const imageCardSet = data.map((item)=>{
 	return (
-		<li key={item.id}><ImageCard url={item.urls.thumb} alt={item.alt_description} /></li>
+		<li key={item.id}><ImageCard url={item.urls.small} alt={item.alt_description} /></li>
 		
 	);
 })

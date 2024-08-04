@@ -4,11 +4,13 @@ import "./App.css";
 import fetchArticlesWithTopic from "./utils/images-api";
 import { InfinitySpin } from "react-loader-spinner";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
+import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn"
 
 function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [query, setQuery] = useState({})
 
   const handleSearch = async (topic) => {
     try {
@@ -16,9 +18,10 @@ function App() {
       setError(false);
       setLoading(true);
       const data = await fetchArticlesWithTopic(topic);
-      
+      setQuery({topic:topic,page:1});
       setImages(data.results);
-     
+      console.log(data)
+      
     } catch (error) {
       setError(true);
       console.log(error)
@@ -26,7 +29,11 @@ function App() {
       setLoading(false);
     }
   };
-console.log(images.length)
+
+  const handleLoadMoreBtn = async () => {
+
+  }
+
   return (
     <>
       <SearchBar onSearch={handleSearch} />
@@ -36,7 +43,11 @@ console.log(images.length)
         color="#4fa94d"
         ariaLabel="infinity-spin-loading"
       />}
-      {images.length>0 && <ImageGallery data={images}/>}
+      {images.length>0 && 
+      <>
+      <ImageGallery data={images}/>
+      <LoadMoreBtn/>
+      </> }
       
     </>
   );
