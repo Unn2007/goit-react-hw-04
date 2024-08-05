@@ -4,16 +4,17 @@ import ImageCard from "../ImageCard/ImageCard";
 
 function ImageGallery({data}) {
 	
-const imageCardSet = data.map((item)=>{
+const imageCardSet = data.map((item,index)=>{
+	
 	return (
-		<li key={item.id} id={item.id}><ImageCard url={item.urls.small} alt={item.alt_description}  /></li>
+		<li key={item.id} ><ImageCard url={item.urls.small} alt={item.alt_description}  /></li>
 		
 	);
 })
     
 return (
 
-    <ul className={css.imageGallery}>
+    <ul className={css.imageGallery} id="xxxxx">
 	{imageCardSet}
 </ul>
 );

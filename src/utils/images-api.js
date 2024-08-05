@@ -5,7 +5,7 @@ import axios from "axios";
 axios.defaults.baseURL = 'https://api.unsplash.com';
 const accessKey = 'RjIsPZVdJdHA7EIX1kcSuYMG_YljaeuXcwVRHctfYpI&query';
 
-const itemsPerPage = 20; 
+const itemsPerPage = 15; 
 
 
 
