@@ -29,15 +29,27 @@ function App() {
     
     
     try {
-      ((page===1)||(query.topic!==topic))? setImages([]):setImages([...images]);
-      console.log((page===1)||(query.topic!==topic))
+      if  ((page===1)||(query.topic!==topic)) {
+        setImages(() => {
+          return [];
+        });
+        
+        // console.log(images);
+      }
+      // console.log((page===1)||(query.topic!==topic))
+      // setImages([]);
+      // console.log(images)
       setError(false);
       setLoading(true);
       const data = await fetchArticlesWithTopic(topic,page);
       
       setQuery({topic:topic,page:page+1});
-      setImages([...images, ...data.results]);
-      
+      console.log(images)
+      setImages((prevImages) => {
+        return [...prevImages, ...data.results];
+      });
+      // setImages([...images, ...data.results]);
+      console.log(images)
     } catch (error) {
       setError(true);
       console.log(error)
