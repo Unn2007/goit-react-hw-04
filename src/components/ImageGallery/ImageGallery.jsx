@@ -14,7 +14,7 @@ const imageCardSet = data.map((item,index)=>{
     
 return (
 
-    <ul className={css.imageGallery} id="xxxxx">
+    <ul className={css.imageGallery} id="imageGallery">
 	{imageCardSet}
 </ul>
 );
