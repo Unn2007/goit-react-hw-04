@@ -1,6 +1,7 @@
-function LoadMoreBtn({handleClick}) {
+function LoadMoreBtn({searchMore}) {
+    
     return (
-        <button type="button" onClick={handleClick}>Load more</button>
+        <button type="button" onClick={searchMore}>Load more</button>
     )
 }
 

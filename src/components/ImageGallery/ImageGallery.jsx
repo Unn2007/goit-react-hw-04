@@ -6,7 +6,7 @@ function ImageGallery({data}) {
 	
 const imageCardSet = data.map((item)=>{
 	return (
-		<li key={item.id}><ImageCard url={item.urls.small} alt={item.alt_description} /></li>
+		<li key={item.id} id={item.id}><ImageCard url={item.urls.small} alt={item.alt_description}  /></li>
 		
 	);
 })

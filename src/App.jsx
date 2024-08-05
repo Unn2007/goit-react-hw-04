@@ -12,16 +12,21 @@ function App() {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState({})
 
-  const handleSearch = async (topic) => {
+  const handleSearch = async (topic,page=1) => {
+    let firstImageId;
+    let root="root"
     try {
-      setImages([]);
+      (page===1)? setImages([]):setImages([...images]);
       setError(false);
       setLoading(true);
-      const data = await fetchArticlesWithTopic(topic);
-      setQuery({topic:topic,page:1});
-      setImages(data.results);
-      console.log(data)
+      setQuery({topic:topic,page:page}); 
+      const data = await fetchArticlesWithTopic(topic,page);
+      firstImageId=data.results[0].id
+      setQuery({topic:topic,page:page+1});
+      setImages([...images, ...data.results]);
       
+      console.log(firstImageId) 
+      console.log(document.querySelector(`#${root}`))
     } catch (error) {
       setError(true);
       console.log(error)
@@ -30,9 +35,11 @@ function App() {
     }
   };
 
-  const handleLoadMoreBtn = async () => {
+  // const handleLoadMoreBtn = () => {
+  //   handleSearch(query.topic,query.page)
 
-  }
+
+  // }
 
   return (
     <>
@@ -46,7 +53,7 @@ function App() {
       {images.length>0 && 
       <>
       <ImageGallery data={images}/>
-      <LoadMoreBtn/>
+      <LoadMoreBtn searchMore={()=>handleSearch(query.topic,query.page)} topic={query.topic} page={query.page}/>
       </> }
       
     </>
