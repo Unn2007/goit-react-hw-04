@@ -4,8 +4,20 @@ import ImageCard from "../ImageCard/ImageCard";
 
 function ImageGallery({data,openModal}) {
 const handleClick = (event)=> {
-	console.log(data[event.target.id])
-    openModal();
+	if (data[event.target.id]) {
+		openModal();
+
+	}
+	// alt_description
+	// created_at
+	// likes
+	// url.regular
+	// user.name
+	// user.profile_image
+	// user.social
+
+
+   
 }
 const imageCardSet = data.map((item,index)=>{
 	

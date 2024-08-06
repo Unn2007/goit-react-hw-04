@@ -7,7 +7,7 @@ import fetchArticlesWithTopic from "./utils/images-api";
 import { InfinitySpin } from "react-loader-spinner";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
-import ImageModal from "./components/SearchBar/ImageModal/ImageModal";
+import ImageModal from "./components/ImageModal/ImageModal";
 
 
 

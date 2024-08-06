@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import { FaPhoneAlt,FaClock,FaHeart } from "react-icons/fa";
 
 const customStyles = {
     overlay: {
@@ -18,7 +19,7 @@ const customStyles = {
  
 
 
-  function ImageModal({modalIsOpen,closeModal}) {
+  function ImageModal({modalIsOpen,closeModal,description,urlRegular,likes,createdAt,userProfileImage,authorName,userSocial}) {
     Modal.setAppElement('#root');
 return (
 
@@ -30,6 +31,32 @@ return (
         style={customStyles}
         contentLabel="Modal"
       >
+        <h2>{description}</h2>
+        <img alt={description} src={urlRegular}/>
+        <div>
+
+        <FaHeart />
+
+          <p>{likes}</p>
+
+        </div>
+
+        <div>
+        <FaClock/>
+        <p>{createdAt}</p>
+
+        </div>
+        <div>
+          <img alt="author_foto" src={userProfileImage}/>
+        <div>
+          <p>{authorName}</p>
+          <a href={userSocial}>Portfolio</a>
+        </div>
+
+
+        </div>
+
+        
 
         <button onClick={closeModal}>close</button>
         
