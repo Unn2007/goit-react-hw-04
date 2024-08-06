@@ -4,18 +4,25 @@ import ImageCard from "../ImageCard/ImageCard";
 
 function ImageGallery({data,openModal}) {
 const handleClick = (event)=> {
-	if (data[event.target.id]) {
-		openModal();
+	const clickedImageIndex =  event.target.id;
+	const clickedImage = data[clickedImageIndex]
+	if (clickedImage) {
+		openModal ({
+			description:clickedImage.description,
+			urlRegular: clickedImage.urls.regular,
+			likes:clickedImage.likes,
+			createdAt:clickedImage.created_at,
+			userProfileImage:clickedImage.user.profile_image.small,
+			authorName:clickedImage.user.name,
+			userSocial:clickedImage.user.social.portfolio_url
+
+		})
+
+		
 
 	}
-	// alt_description
-	// created_at
-	// likes
-	// url.regular
-	// user.name
-	// user.profile_image
-	// user.social
 
+	
 
    
 }

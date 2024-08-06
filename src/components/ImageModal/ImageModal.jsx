@@ -1,70 +1,70 @@
-import Modal from 'react-modal';
-import { FaPhoneAlt,FaClock,FaHeart } from "react-icons/fa";
+import Modal from "react-modal";
+import { FaPhoneAlt, FaClock, FaHeart,FaRegWindowClose  } from "react-icons/fa";
+import css from "./ImageModal.module.css";
 
 const customStyles = {
-    overlay: {
-        
-        backgroundColor: 'rgba(64, 64, 64, 0.75)'
-      },
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
-  
- 
+  overlay: {
+    backgroundColor: "rgba(64, 64, 64, 0.75)",
+  },
+  content: {
+    top: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
 
-
-  function ImageModal({modalIsOpen,closeModal,description,urlRegular,likes,createdAt,userProfileImage,authorName,userSocial}) {
-    Modal.setAppElement('#root');
-return (
-
+function ImageModal({ modalIsOpen, closeModal, modalData }) {
+  Modal.setAppElement("#app");
+  const {
+    description,
+    urlRegular,
+    likes,
+    createdAt,
+    userProfileImage,
+    authorName,
+    userSocial,
+  } = modalData;
+  return (
     <div>
-      
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Modal"
       >
-        <h2>{description}</h2>
-        <img alt={description} src={urlRegular}/>
-        <div>
+        <div className={css.modalContent}>
+          <div className={css.imageThumb}>
+          <img alt={description} src={urlRegular} className={css.modalImage} />
+          </div>
+          <div className={css.imageInfo}>
+          <h2>{description}</h2>
+          <div className={css.stats}>
+            <FaHeart />
 
-        <FaHeart />
+            <p>{likes}</p>
+          </div>
 
-          <p>{likes}</p>
+          <div className={css.stats}>
+            <FaClock />
+            <p>{createdAt}</p>
+          </div>
+          <div>
+            <img alt="author_foto" src={userProfileImage} />
+            <div>
+              <p>{authorName}</p>
+              <a href={userSocial}>Portfolio</a>
+            </div>
+          </div>
 
+          <button onClick={closeModal}><FaRegWindowClose /></button>
+          </div>
         </div>
-
-        <div>
-        <FaClock/>
-        <p>{createdAt}</p>
-
-        </div>
-        <div>
-          <img alt="author_foto" src={userProfileImage}/>
-        <div>
-          <p>{authorName}</p>
-          <a href={userSocial}>Portfolio</a>
-        </div>
-
-
-        </div>
-
-        
-
-        <button onClick={closeModal}>close</button>
-        
       </Modal>
     </div>
+  );
+}
 
-);
-
-  }
-
-  export default ImageModal;
+export default ImageModal;

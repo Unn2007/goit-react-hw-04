@@ -1,0 +1,52 @@
+.modalContent {
+   position: relative; 
+  
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+    
+    color: black;
+}
+
+.modalContent a {
+    color: black;
+}
+
+.modalContent button {
+    padding: 0px 0px;
+    
+    background-color: transparent;
+    color:black
+
+}
+
+.imageThumb {
+    
+    width: 800px;
+    height: 600px;
+
+}
+.imageInfo {
+
+position: absolute;
+top: 0;
+left: 0;
+}
+
+
+.modalImage {
+    display: block;
+  height: 100%;
+  width: 100%;
+    object-fit: contain;
+}
+
+.stats {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.stats p {
+    margin: 0px;
+}
