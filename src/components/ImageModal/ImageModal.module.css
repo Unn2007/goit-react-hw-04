@@ -10,9 +10,14 @@
 
 .modalContent a {
     color: black;
+    text-decoration: underline;
 }
 
 .modalContent button {
+    position: absolute;
+    top:0;
+    right: 0;
+
     padding: 0px 0px;
     
     background-color: transparent;
@@ -24,13 +29,23 @@
     
     width: 800px;
     height: 600px;
+    margin-bottom: 10px;
 
 }
-.imageInfo {
+.description {
 
 position: absolute;
-top: 0;
-left: 0;
+top: 2%;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
+  
+  font-size: 16px;
+  margin: 0px;
+  white-space: nowrap;
+  overflow: hidden;    
+  text-overflow: ellipsis; 
+  width: 800px;
 }
 
 
@@ -41,9 +56,25 @@ left: 0;
     object-fit: contain;
 }
 
+.authorData {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.authorInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.authorInfo p {
+    margin: 0px;
+} 
+
 .stats {
     display: flex;
-    gap: 10px;
+    gap: 5px;
     align-items: center;
 }
 

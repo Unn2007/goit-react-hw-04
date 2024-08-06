@@ -1,5 +1,5 @@
 import Modal from "react-modal";
-import { FaPhoneAlt, FaClock, FaHeart,FaRegWindowClose  } from "react-icons/fa";
+import { FaPhoneAlt, FaClock, FaHeart, FaRegWindowClose } from "react-icons/fa";
 import css from "./ImageModal.module.css";
 
 const customStyles = {
@@ -36,30 +36,36 @@ function ImageModal({ modalIsOpen, closeModal, modalData }) {
         contentLabel="Modal"
       >
         <div className={css.modalContent}>
+          <button onClick={closeModal} className={css.closeButton}>
+            <FaRegWindowClose />
+          </button>
           <div className={css.imageThumb}>
-          <img alt={description} src={urlRegular} className={css.modalImage} />
-          </div>
-          <div className={css.imageInfo}>
-          <h2>{description}</h2>
-          <div className={css.stats}>
-            <FaHeart />
-
-            <p>{likes}</p>
+            <img
+              alt={description}
+              src={urlRegular}
+              className={css.modalImage}
+            />
           </div>
 
-          <div className={css.stats}>
-            <FaClock />
-            <p>{createdAt}</p>
-          </div>
-          <div>
-            <img alt="author_foto" src={userProfileImage} />
-            <div>
-              <p>{authorName}</p>
-              <a href={userSocial}>Portfolio</a>
+          <h2 className={css.description}>{description}</h2>
+          <div className={css.authorData}>
+            <div className={css.stats}>
+              <FaHeart />
+
+              <p>{likes}</p>
             </div>
-          </div>
 
-          <button onClick={closeModal}><FaRegWindowClose /></button>
+            <div className={css.stats}>
+              <FaClock />
+              <p>{createdAt}</p>
+            </div>
+            <div className={css.authorInfo}>
+              <img alt="author_foto" src={userProfileImage} />
+              
+                <p>{authorName}</p>
+                <a href={userSocial}>Portfolio</a>
+              
+            </div>
           </div>
         </div>
       </Modal>

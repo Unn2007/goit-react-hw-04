@@ -1,0 +1,25 @@
+header {
+    background-color: blue;
+}
+
+form {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 5px;
+} 
+
+form button {
+    padding: 0px 0px;
+    margin-right: 5px;
+
+}
+
+form button:hover, form button:focus {
+    border: none;
+    outline: none;
+}
+
+input {
+    border: none;
+    outline: none;
+}
