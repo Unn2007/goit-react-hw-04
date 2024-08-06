@@ -1,8 +1,8 @@
 import css from './ImageCard.module.css'
-function ImageCard({url,alt}) {
+function ImageCard({url,alt,id}) {
     return (
         <div>
-  <img src={url} alt={alt} className={css.image} />
+  <img src={url} alt={alt} id={id} className={css.image} />
 </div>
 
     );
