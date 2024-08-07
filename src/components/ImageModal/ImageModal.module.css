@@ -1,88 +1,83 @@
 .modalContent {
-   position: relative; 
-  
+  position: relative;
+
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-    
-    color: black;
+
+  color: black;
 }
 
 .modalContent a {
-    color: black;
-    text-decoration: underline;
+  color: black;
+  text-decoration: underline;
 }
 
 .modalContent button {
-    position: absolute;
-    top:0;
-    right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 
-    padding: 0px 0px;
-    
-    background-color: transparent;
-    color:black
+  padding: 0px 0px;
 
+  background-color: transparent;
+  color: black;
 }
 
 .modalContent button:hover {
-    border: none;
-    border-color: transparent ;
+  border: none;
+  border-color: transparent;
 }
 
 .imageThumb {
-    
-    width: 800px;
-    height: 600px;
-    margin-bottom: 10px;
-
+  width: 800px;
+  height: 600px;
+  margin-bottom: 10px;
 }
 .description {
-
-position: absolute;
-top: 2%;
+  position: absolute;
+  top: 2%;
 
   left: 50%;
   transform: translate(-50%, -50%);
-  
+
   font-size: 16px;
   margin: 0px;
   white-space: nowrap;
-  overflow: hidden;    
-  text-overflow: ellipsis; 
+  overflow: hidden;
+  text-overflow: ellipsis;
   width: 800px;
 }
 
-
 .modalImage {
-    display: block;
+  display: block;
   height: 100%;
   width: 100%;
-    object-fit: contain;
+  object-fit: contain;
 }
 
 .authorData {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
 }
 
 .authorInfo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .authorInfo p {
-    margin: 0px;
-} 
+  margin: 0px;
+}
 
 .stats {
-    display: flex;
-    gap: 5px;
-    align-items: center;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .stats p {
-    margin: 0px;
+  margin: 0px;
 }

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Axios, AxiosError } from "axios";
+import toast, { Toaster } from "react-hot-toast";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import fetchArticlesWithTopic from "./utils/images-api";
@@ -16,7 +17,6 @@ function App() {
   const [query, setQuery] = useState({});
   const [imageModalIsOpen, setIsOpen] = useState(false);
   const [imageModalData, setimageModalData] = useState({});
-  
 
   function openimageModal() {
     setIsOpen(true);
@@ -45,14 +45,19 @@ function App() {
       setError(false);
       setLoading(true);
       const data = await fetchArticlesWithTopic(topic, page);
+      if (data.total === 0) {
+        toast.error(`Error.Nothing find`, {
+          position: "top-left",
+        });
+        return;
+      }
+
       setQuery({ topic: topic, page: page + 1 });
       setImages((prevImages) => {
         return [...prevImages, ...data.results];
       });
     } catch (error) {
       setError(true);
-      
-      
     } finally {
       setLoading(false);
     }
@@ -65,7 +70,7 @@ function App() {
 
   return (
     <div id="app">
-      {error&&<ErrorMessage />}
+      {error && <ErrorMessage toggleState={setError} />}
       <SearchBar onSearch={handleSearch} />
 
       {images.length > 0 && (
@@ -77,15 +82,14 @@ function App() {
         </>
       )}
       <div className="loaderWrap">
-      
-      {(loading &&
-        <InfinitySpin
-          visible={true}
-          width="100"
-          color="#4fa94d"
-          ariaLabel="infinity-spin-loading"
-        />
-      )}
+        {loading && (
+          <InfinitySpin
+            visible={true}
+            width="100"
+            color="#4fa94d"
+            ariaLabel="infinity-spin-loading"
+          />
+        )}
       </div>
       {imageModalIsOpen && (
         <ImageModal
