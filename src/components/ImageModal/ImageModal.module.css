@@ -25,6 +25,11 @@
 
 }
 
+.modalContent button:hover {
+    border: none;
+    border-color: transparent ;
+}
+
 .imageThumb {
     
     width: 800px;

@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import { FaPhoneAlt, FaClock, FaHeart, FaRegWindowClose } from "react-icons/fa";
 import css from "./ImageModal.module.css";
+import formatFotoCreateDate from '../../utils/formatDate';
 
 const customStyles = {
   overlay: {
@@ -57,13 +58,13 @@ function ImageModal({ modalIsOpen, closeModal, modalData }) {
 
             <div className={css.stats}>
               <FaClock />
-              <p>{createdAt}</p>
+              <p>{formatFotoCreateDate(createdAt)}</p>
             </div>
             <div className={css.authorInfo}>
               <img alt="author_foto" src={userProfileImage} />
               
                 <p>{authorName}</p>
-                <a href={userSocial}>Portfolio</a>
+                <a href={userSocial} target="_blank">Portfolio</a>
               
             </div>
           </div>

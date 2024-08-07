@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-
+import { Axios, AxiosError } from "axios";
 import SearchBar from "./components/SearchBar/SearchBar";
-import "./App.css";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import fetchArticlesWithTopic from "./utils/images-api";
 import { InfinitySpin } from "react-loader-spinner";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
+import "./App.css";
 
 function App() {
   const [images, setImages] = useState([]);
@@ -15,6 +16,7 @@ function App() {
   const [query, setQuery] = useState({});
   const [imageModalIsOpen, setIsOpen] = useState(false);
   const [imageModalData, setimageModalData] = useState({});
+  
 
   function openimageModal() {
     setIsOpen(true);
@@ -49,7 +51,8 @@ function App() {
       });
     } catch (error) {
       setError(true);
-      console.log(error);
+      
+      
     } finally {
       setLoading(false);
     }
@@ -62,15 +65,9 @@ function App() {
 
   return (
     <div id="app">
+      {error&&<ErrorMessage />}
       <SearchBar onSearch={handleSearch} />
-      {loading && (
-        <InfinitySpin
-          visible={true}
-          width="200"
-          color="#4fa94d"
-          ariaLabel="infinity-spin-loading"
-        />
-      )}
+
       {images.length > 0 && (
         <>
           <ImageGallery data={images} openModal={handleClickImage} />
@@ -79,7 +76,17 @@ function App() {
           />
         </>
       )}
-
+      <div className="loaderWrap">
+      
+      {(loading &&
+        <InfinitySpin
+          visible={true}
+          width="100"
+          color="#4fa94d"
+          ariaLabel="infinity-spin-loading"
+        />
+      )}
+      </div>
       {imageModalIsOpen && (
         <ImageModal
           modalIsOpen={imageModalIsOpen}
