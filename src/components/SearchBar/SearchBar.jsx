@@ -22,17 +22,18 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <header>
-      <form onSubmit={handleSubmit}>
-        <button type="submit">
+    <header className={css.header}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <button type="submit" className={css.searcButton}>
           <FaSearch />
-        </button>
+        </button >
         <input
           name="topic"
           type="text"
           autoComplete="off"
           autoFocus
           placeholder="Search images and photos"
+          className={css.input}
         />
       </form>
       <Toaster />

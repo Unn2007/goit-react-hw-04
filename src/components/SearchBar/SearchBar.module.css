@@ -1,4 +1,4 @@
-header {
+.header {
   background-color: blue;
   display: flex;
   align-items: center;
@@ -6,25 +6,25 @@ header {
   padding: 10px 0px;
 }
 
-form {
+.form {
   border: 1px solid black;
   border-radius: 5px;
   padding: 5px 5px;
   background-color: white;
 }
 
-form button {
+.searcButton {
   padding: 0px 0px;
   margin-right: 5px;
 }
 
-form button:hover,
-form button:focus {
+searcButton:hover,
+searcButton:focus {
   border: none;
   outline: none;
 }
 
-input {
+.input {
   border: none;
   outline: none;
 }
