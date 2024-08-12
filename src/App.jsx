@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, forwardRef } from "react";
 import { Axios, AxiosError } from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import SearchBar from "./components/SearchBar/SearchBar";
@@ -14,9 +14,12 @@ function App() {
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [query, setQuery] = useState({});
+  const [query, setQuery] = useState("");
+  const [page, setPage] = useState(1);
   const [imageModalIsOpen, setIsOpen] = useState(false);
   const [imageModalData, setimageModalData] = useState({});
+
+  const loadMoreButton = useRef();
 
   function openimageModal() {
     setIsOpen(true);
@@ -25,42 +28,23 @@ function App() {
     setIsOpen(false);
   }
 
-  useEffect(() => {
-    if (query.page > 1) {
-      const beginImages =
-        document.querySelector(`#imageGallery`).lastElementChild;
-      beginImages.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  }, [query.page]);
+  const scrollImages = () => {
+    const beginImages = loadMoreButton.current;
+    beginImages.scrollIntoView({
+      behavior: "smooth",
+    });
+  };
 
-  const handleSearch = async (topic, page = 1) => {
-    try {
-      if (page === 1 || query.topic !== topic) {
-        setImages(() => {
-          return [];
-        });
-      }
-      setError(false);
-      setLoading(true);
-      const data = await fetchArticlesWithTopic(topic, page);
-      if (data.total === 0) {
-        toast.error(`Error.Nothing find`, {
-          position: "top-left",
-        });
-        return;
-      }
+  const onFind = (topic) => {
+    setQuery(topic);
+    setPage(1);
+    setImages(() => {
+      return [];
+    });
+  };
 
-      setQuery({ topic: topic, page: page + 1 });
-      setImages((prevImages) => {
-        return [...prevImages, ...data.results];
-      });
-    } catch (error) {
-      setError(true);
-    } finally {
-      setLoading(false);
-    }
+  const findMore = () => {
+    setPage(page + 1);
   };
 
   const handleClickImage = (modalData) => {
@@ -68,19 +52,47 @@ function App() {
     setIsOpen(true);
   };
 
+  useEffect(() => {
+    const handleSearch = async () => {
+      try {
+        if (query) {
+          setError(false);
+          setLoading(true);
+          const data = await fetchArticlesWithTopic(query, page);
+          if (data.results.length === 0) {
+            toast.error(`Error.Nothing find`, { position: "top-left" });
+          }
+          setImages((prevImages) => {
+            return [...prevImages, ...data.results];
+          });
+        }
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    handleSearch();
+  }, [query, page]);
+
+  useEffect(() => {
+    page > 1 && scrollImages();
+  });
+
   return (
     <div id="app">
       {error && <ErrorMessage toggleState={setError} />}
-      <SearchBar onSearch={handleSearch} />
+
+      <SearchBar onSearch={onFind} />
 
       {images.length > 0 && (
         <>
           <ImageGallery data={images} openModal={handleClickImage} />
-          <LoadMoreBtn
-            searchMore={() => handleSearch(query.topic, query.page)}
-          />
+          <LoadMoreBtn props={findMore} ref={loadMoreButton} />
         </>
       )}
+
       <div className="loaderWrap">
         {loading && (
           <InfinitySpin

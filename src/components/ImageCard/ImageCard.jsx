@@ -1,8 +1,12 @@
 import css from "./ImageCard.module.css";
 import PropTypes from "prop-types";
+
+
 function ImageCard({ url, alt, id }) {
+  
   return (
-    <div>
+    
+    <div className={css.container}>
       <img src={url} alt={alt} id={id} className={css.image} />
     </div>
   );

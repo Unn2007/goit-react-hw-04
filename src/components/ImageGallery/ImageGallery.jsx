@@ -2,7 +2,9 @@ import css from "./ImageGallery.module.css";
 import ImageCard from "../ImageCard/ImageCard";
 import PropTypes from "prop-types";
 
-function ImageGallery({ data, openModal }) {
+
+
+function ImageGallery({ data, openModal,ref }) {
   const handleClick = (event) => {
     const clickedImageIndex = event.target.id;
     const clickedImage = data[clickedImageIndex];
@@ -31,7 +33,7 @@ function ImageGallery({ data, openModal }) {
   });
 
   return (
-    <ul className={css.imageGallery} id="imageGallery" onClick={handleClick}>
+    <ul className={css.imageGallery} id="imageGallery" onClick={handleClick} ref={ref}>
       {imageCardSet}
     </ul>
   );
@@ -43,3 +45,6 @@ ImageGallery.propTypes = {
   data: PropTypes.arrayOf(PropTypes.object).isRequired,
   openModal: PropTypes.func.isRequired,
 };
+
+
+
