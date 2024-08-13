@@ -1,9 +1,9 @@
 import { forwardRef, useRef} from "react";
-const LoadMoreBtn = forwardRef(({props}, ref) => {
+const LoadMoreBtn = forwardRef(({searchMore}, ref) => {
   
   return (<button ref={ref} 
     type="button" 
-    onClick={props}>Load more</button>)
+    onClick={searchMore}>Load more</button>)
 });
 
 

@@ -89,7 +89,7 @@ function App() {
       {images.length > 0 && (
         <>
           <ImageGallery data={images} openModal={handleClickImage} />
-          <LoadMoreBtn props={findMore} ref={loadMoreButton} />
+          <LoadMoreBtn searchMore={findMore} ref={loadMoreButton} />
         </>
       )}
 
